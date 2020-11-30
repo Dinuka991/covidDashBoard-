@@ -101,15 +101,15 @@
 <mat-card-content>
   <form [formGroup] = "covidForm" class="example-form">
     <mat-form-field class="example-full-width">
-      <input type="text"
+      <input 
              placeholder="Select Country"
-             aria-label="Number"
+             aria-label="Country"
              matInput
              formControlName ="countryName"
              [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
+      <mat-autocomplete  #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredStates | async" [value]="option.Slug"   >
+          {{option.Country}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

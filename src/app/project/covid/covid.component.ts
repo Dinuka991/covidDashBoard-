@@ -21,9 +21,8 @@ export class CovidComponent implements OnInit {
 
 
 
-  countries: any;
-  filteredOptions: Observable<COUNTRY[]>;
-  states: COUNTRY[] = [];
+ 
+  filteredStates: Observable<State[]>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   displayedColumns: string[] = ['date', 'count'];
   dataSource = new MatTableDataSource<PCR>();
@@ -61,33 +60,40 @@ export class CovidComponent implements OnInit {
   localDeaths: any;
   totalCount: number;
   pageSize: number;
-
-  constructor(private covidService: CovidService , private fb: FormBuilder ) { }
+  countries: COUNTRY[] = [];
+  countryName: any;
+  selectedCountry: string;
+  constructor(private covidService: CovidService , private fb: FormBuilder ) { 
+    this.filteredStates = this.covidForm.get('countryName').valueChanges
+    .pipe(
+      startWith(''),
+      map(state => state ? this._filterStates(state) : this.countries.slice())
+    );
+  }
 
   ngOnInit() {
 
 
     //this.options = this.countries;
-    this.filteredOptions = this.covidForm.get('countryName').valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
-    
+     
     
     this.getCovidStatics();
     this.getCountries();
-
+    this.covidForm.get("countryName").valueChanges.subscribe(x => {
+      console.log(x);
+      this.selectedCountry = x.Slug;
+      console.log(this.selectedCountry);
+    })
     
   }
   covidForm = this.fb.group({
     countryName: ['']
   })
-  private _filter(value: string): COUNTRY[] {
+  private _filterStates(value: string): State[] {
     const filterValue = value.toLowerCase();
 
-    return this.states.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.countries.filter(state => state.Country.toLowerCase().indexOf(filterValue) === 0);
   }
- 
 
  
   ngAfterViewInit(): void {
@@ -97,9 +103,8 @@ export class CovidComponent implements OnInit {
      this.covidService.getCountries()
             .subscribe( (data: any) => {
               console.log(data)
-             
-
-              this.countries = data as COUNTRY[];
+              this.countries  = data;
+              console.log(this.countries);
               
             })
   }
@@ -170,8 +175,12 @@ export interface PCR {
 }
 
 export interface COUNTRY{
-  name: string,
+  Country: string,
   Slug: string
 }
 
+export interface State {
+  Country: string,
+  Slug: string
+}
 
