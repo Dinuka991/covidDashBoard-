@@ -99,8 +99,9 @@
 <mat-card-title>Global Search</mat-card-title>
 </mat-card-header>
 <mat-card-content>
-  <form [formGroup] = "covidForm" class="example-form">
-    <mat-form-field class="example-full-width">
+  <form [formGroup] = "covidForm" class="flex-container" >
+    
+    <mat-form-field>
       <input 
              placeholder="Select Country"
              aria-label="Country"
@@ -113,6 +114,17 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <mat-form-field >
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    
   </form>
 </mat-card-content>
 

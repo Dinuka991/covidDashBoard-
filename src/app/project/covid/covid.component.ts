@@ -87,7 +87,9 @@ export class CovidComponent implements OnInit {
     
   }
   covidForm = this.fb.group({
-    countryName: ['']
+    countryName: [''],
+    startDate: [''],
+    endDate: ['']
   })
   private _filterStates(value: string): State[] {
     const filterValue = value.toLowerCase();

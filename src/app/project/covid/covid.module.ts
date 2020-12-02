@@ -13,7 +13,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [CovidComponent],
   imports: [
@@ -28,12 +29,15 @@ import {FormsModule} from '@angular/forms';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
   exports: [
-    MatPaginatorModule ],
+    MatPaginatorModule , MatDatepickerModule , MatNativeDateModule ],
 
-providers: [CovidService , ThemeService ]
+providers: [CovidService , ThemeService , MatDatepickerModule , MatNativeDateModule]
 })
 export class CovidModule { }
+
