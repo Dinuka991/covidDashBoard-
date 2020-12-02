@@ -15,6 +15,11 @@ import { MatInputModule } from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { DatePipe } from '@angular/common';
+
+
 @NgModule({
   declarations: [CovidComponent],
   imports: [
@@ -31,13 +36,15 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatInputModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule,
+    MatButtonModule
 
   ],
   exports: [
     MatPaginatorModule , MatDatepickerModule , MatNativeDateModule ],
 
-providers: [CovidService , ThemeService , MatDatepickerModule , MatNativeDateModule]
+providers: [CovidService , ThemeService , MatDatepickerModule , MatNativeDateModule , DatePipe]
 })
 export class CovidModule { }
 

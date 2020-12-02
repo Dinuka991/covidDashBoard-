@@ -10,6 +10,7 @@ import { MultiDataSet  } from 'ng2-charts';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { FormBuilder ,FormGroup , FormControl } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -63,7 +64,10 @@ export class CovidComponent implements OnInit {
   countries: COUNTRY[] = [];
   countryName: any;
   selectedCountry: string;
-  constructor(private covidService: CovidService , private fb: FormBuilder ) { 
+  startDate: Date;
+  endDate: Date;
+
+  constructor(private covidService: CovidService , private fb: FormBuilder ,   public datepipe: DatePipe ) { 
     this.filteredStates = this.covidForm.get('countryName').valueChanges
     .pipe(
       startWith(''),
@@ -81,7 +85,7 @@ export class CovidComponent implements OnInit {
     this.getCountries();
     this.covidForm.get("countryName").valueChanges.subscribe(x => {
       console.log(x);
-      this.selectedCountry = x.Slug;
+      this.selectedCountry = x;
       console.log(this.selectedCountry);
     })
     
@@ -104,23 +108,28 @@ export class CovidComponent implements OnInit {
   getCountries(){
      this.covidService.getCountries()
             .subscribe( (data: any) => {
-              console.log(data)
               this.countries  = data;
-              console.log(this.countries);
-              
+            
             })
+  }
+  getGlobaleCases(){
+   
+
+    this.covidService.getGlobaleCases(this.covidForm.get('countryName').value ,  this.datepipe.transform(this.covidForm.get('startDate').value, 'YYYY-MM-DDT00:00:00.000Z ') ,  this.datepipe.transform(this.covidForm.get('endDate').value, 'YYYY-MM-DD T00:00:00.000Z '))
+      .subscribe( (data: any) => {
+             console.log(data);
+      })
   }
   getCovidStatics(){
     this.covidService.getCovidStatics()
                 .subscribe( (data: any ) => {
 
 
-                  this.localActiveCases = data.data.local_active_cases;
-                  console.log(data)
+                  this.localActiveCases = data.data.local_active_this
                   console.log(this.localActiveCases)
                   this.locatTotalCases = data.data.local_total_cases;
                   this.localRecovered = data.data.local_recovered;
-                  this.localDeaths = data.data.local_deaths;
+                  this.localDeaths = data.data.lthisal_deaths;
 
                   var count = Object.keys(data.data.daily_pcr_testing_data).length;
                   this.totalCount = count;
