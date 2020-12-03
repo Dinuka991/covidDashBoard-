@@ -22,7 +22,7 @@ export class CovidService {
     const params = new HttpParams()
     .set('from', start)
     .set('to', end);
-    return  this.http.get<any>('https://api.covid19api.com/total/' + country +'/status/confirmed' + params)
+    return  this.http.get<any>('https://api.covid19api.com/total/country/' + country +'/status/confirmed?' + params)
   }
 }
 

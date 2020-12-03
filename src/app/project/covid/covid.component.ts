@@ -115,7 +115,7 @@ export class CovidComponent implements OnInit {
   getGlobaleCases(){
    
 
-    this.covidService.getGlobaleCases(this.covidForm.get('countryName').value ,  this.datepipe.transform(this.covidForm.get('startDate').value, 'YYYY-MM-DDT00:00:00.000Z ') ,  this.datepipe.transform(this.covidForm.get('endDate').value, 'YYYY-MM-DD T00:00:00.000Z '))
+    this.covidService.getGlobaleCases(this.covidForm.get('countryName').value ,  this.datepipe.transform(this.covidForm.get('startDate').value, 'yyyy-MM-dd') ,  this.datepipe.transform(this.covidForm.get('endDate').value, 'yyyy-MM-dd'))
       .subscribe( (data: any) => {
              console.log(data);
       })
