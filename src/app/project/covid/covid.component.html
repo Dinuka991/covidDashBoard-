@@ -29,7 +29,6 @@
 <mat-card-content>
 
 <mat-label class="pcr"><h4>PCR TESTS PER DAY</h4></mat-label>
-<button (click) = "getCovidStatics()">click</button>
 
 <div class="mat-elevation-z8 ">
   <table mat-table [dataSource]="dataSource2">
@@ -130,7 +129,13 @@
     </button>
   </form>
 </mat-card-content>
+
 <div class="mat-elevation-z8 ">
+  <mat-form-field style= "align-content: end !important;" >
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  
   <table mat-table [dataSource]="dataSource3">
 
     <!-- Position Column -->
@@ -149,7 +154,10 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
     </table>
-    <mat-paginator [pageSize]="10" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+   
+    <mat-paginator 
+    
+    [pageSize]="10" [pageSizeOptions]="[2, 4, 6, 10, 20]">
     </mat-paginator>
 
 
