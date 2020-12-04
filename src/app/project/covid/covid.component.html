@@ -30,7 +30,7 @@
 
 <mat-label class="pcr"><h4>PCR TESTS PER DAY</h4></mat-label>
 <div class="mat-elevation-z8 ">
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource2">
 
     <!-- Position Column -->
     <ng-container matColumnDef="date">
@@ -128,6 +128,32 @@
     </button>
   </form>
 </mat-card-content>
+<div class="mat-elevation-z8 ">
+  <table mat-table [dataSource]="dataSource3">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef> PCR DATE </th>
+      <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Cases">
+      <th mat-header-cell *matHeaderCellDef> CASES </th>
+      <td mat-cell *matCellDef="let element"> {{element.Cases}} </td>
+    </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+    </table>
+    <mat-paginator  
+    [pageSizeOptions]="[5, 10, 25, 100]"> 
+    </mat-paginator>
+
+
+
+</div>
 
 </mat-card>
 

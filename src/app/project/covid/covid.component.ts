@@ -11,6 +11,8 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { FormBuilder ,FormGroup , FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import {MatSort} from '@angular/material/sort';
+import {  ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -25,8 +27,11 @@ export class CovidComponent implements OnInit {
  
   filteredStates: Observable<State[]>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  
   displayedColumns: string[] = ['date', 'count'];
-  dataSource = new MatTableDataSource<PCR>();
+  displayedColumns2: string[] = ['Date', 'Cases'];
+  dataSource2 = new MatTableDataSource<PCR>();
+  dataSource3 = new MatTableDataSource<Statics>();
   localActiveCase: number;
   globalActiveCase: number;
   localRecoverd: number;
@@ -67,7 +72,7 @@ export class CovidComponent implements OnInit {
   startDate: Date;
   endDate: Date;
 
-  constructor(private covidService: CovidService , private fb: FormBuilder ,   public datepipe: DatePipe ) { 
+  constructor(private covidService: CovidService ,private cdr: ChangeDetectorRef, private fb: FormBuilder ,   public datepipe: DatePipe ) { 
     this.filteredStates = this.covidForm.get('countryName').valueChanges
     .pipe(
       startWith(''),
@@ -77,9 +82,10 @@ export class CovidComponent implements OnInit {
 
   ngOnInit() {
 
-
+    
     //this.options = this.countries;
-     
+    this.dataSource2.paginator = this.paginator;
+    setTimeout(() => this.dataSource3.paginator = this.paginator);
     
     this.getCovidStatics();
     this.getCountries();
@@ -103,8 +109,11 @@ export class CovidComponent implements OnInit {
 
  
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+    this.dataSource2.paginator = this.paginator;
+    setTimeout(() => this.dataSource3.paginator = this.paginator);
+
   }
+  
   getCountries(){
      this.covidService.getCountries()
             .subscribe( (data: any) => {
@@ -117,7 +126,11 @@ export class CovidComponent implements OnInit {
 
     this.covidService.getGlobaleCases(this.covidForm.get('countryName').value ,  this.datepipe.transform(this.covidForm.get('startDate').value, 'yyyy-MM-dd') ,  this.datepipe.transform(this.covidForm.get('endDate').value, 'yyyy-MM-dd'))
       .subscribe( (data: any) => {
-             console.log(data);
+        this.pageSize =  10;
+        this.cdr.detectChanges();
+        setTimeout(() => this.dataSource3.paginator = this.paginator);
+        this.dataSource3.data = data as Statics[];
+        
       })
   }
   getCovidStatics(){
@@ -136,7 +149,7 @@ export class CovidComponent implements OnInit {
                   this.pageSize =  10;
                   console.log(count);
               
-                  this.dataSource.data = data.data.daily_pcr_testing_data  as PCR[];
+                  this.dataSource2.data = data.data.daily_pcr_testing_data  as PCR[];
                    //console.log(data.data.daily_pcr_testing_data);
                   // console.log(data.data.daily_pcr_testing_data.map(a => a.count));
                    const projects = data.data.daily_pcr_testing_data.map(a => a.count);
@@ -193,5 +206,10 @@ export interface COUNTRY{
 export interface State {
   Country: string,
   Slug: string
+}
+
+export interface Statics{
+    Date: Date;
+    Cases: string,
 }
 
