@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { CovidService } from '../covid.service';
@@ -26,12 +26,13 @@ export class CovidComponent implements OnInit {
 
  
   filteredStates: Observable<State[]>;
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+ 
+  @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
   
   displayedColumns: string[] = ['date', 'count'];
   displayedColumns2: string[] = ['Date', 'Cases'];
   dataSource2 = new MatTableDataSource<PCR>();
-  dataSource3 = new MatTableDataSource<Statics>();
+  dataSource3 = new MatTableDataSource<STATICS>();
   localActiveCase: number;
   globalActiveCase: number;
   localRecoverd: number;
@@ -84,10 +85,10 @@ export class CovidComponent implements OnInit {
 
     
     //this.options = this.countries;
-    this.dataSource2.paginator = this.paginator;
-    setTimeout(() => this.dataSource3.paginator = this.paginator);
+    this.dataSource2.paginator = this.paginator.toArray()[0];;
+    this.dataSource3.paginator = this.paginator.toArray()[0];;
     
-    this.getCovidStatics();
+    //this.getCovidStatics();
     this.getCountries();
     this.covidForm.get("countryName").valueChanges.subscribe(x => {
       console.log(x);
@@ -109,8 +110,8 @@ export class CovidComponent implements OnInit {
 
  
   ngAfterViewInit(): void {
-    this.dataSource2.paginator = this.paginator;
-    setTimeout(() => this.dataSource3.paginator = this.paginator);
+    this.dataSource2.paginator = this.paginator.toArray()[0];;
+    this.dataSource3.paginator = this.paginator.toArray()[1];;
 
   }
   
@@ -128,8 +129,7 @@ export class CovidComponent implements OnInit {
       .subscribe( (data: any) => {
         this.pageSize =  10;
         this.cdr.detectChanges();
-        setTimeout(() => this.dataSource3.paginator = this.paginator);
-        this.dataSource3.data = data as Statics[];
+        this.dataSource3.data = data as STATICS[];
         
       })
   }
@@ -149,7 +149,7 @@ export class CovidComponent implements OnInit {
                   this.pageSize =  10;
                   console.log(count);
               
-                  this.dataSource2.data = data.data.daily_pcr_testing_data  as PCR[];
+                 this.dataSource2.data = data.data.daily_pcr_testing_data  as PCR[];
                    //console.log(data.data.daily_pcr_testing_data);
                   // console.log(data.data.daily_pcr_testing_data.map(a => a.count));
                    const projects = data.data.daily_pcr_testing_data.map(a => a.count);
@@ -208,7 +208,7 @@ export interface State {
   Slug: string
 }
 
-export interface Statics{
+export interface STATICS{
     Date: Date;
     Cases: string,
 }
