@@ -158,29 +158,40 @@ export class CovidComponent implements OnInit {
                   console.log(count);
               
                  this.dataSource2.data = data.data.daily_pcr_testing_data  as PCR[];
+                 let arr = data.data.daily_pcr_testing_data .map(a => a.count);
+                 console.log(arr);
+         
+                 let arr2 = data.data.daily_pcr_testing_data .map(a => a.date);
+                 console.log(arr2);
+                 let arr3 = arr.slice(Math.max(arr.length - 10, 0));
+                 let arr4 = arr2.slice(Math.max(arr2.length - 10, 0));
+                 this.lineChartData = [{ data: arr3 ,   label: 'COVID 19' } ] ;
+                 this.lineChartLabels = arr4
+                // this.chartLabels = arr2.slice(Math.max(arr2.length - 5, 0));
+               // console.log( arr2.slice(Math.max(arr2.length - 5, 0)))
                    //console.log(data.data.daily_pcr_testing_data);
                   // console.log(data.data.daily_pcr_testing_data.map(a => a.count));
-                   const projects = data.data.daily_pcr_testing_data.map(a => a.count);
-                   const projects2 = data.data.daily_pcr_testing_data.map(a => a.date);
+                   //const projects = data.data.daily_pcr_testing_data.map(a => a.count);
+                   //const projects2 = data.data.daily_pcr_testing_data.map(a => a.date);
                    //console.log(projects)
-                   projects.forEach(projet=> {
+                //   projects.forEach(projet=> {
                     
                       //console.log(projects.map((i) => Number(i)));
 
-                      let array = projects.map((i) => Number(i));
+                    //  let array = projects.map((i) => Number(i));
                        //console.log(array)
                       
-                       this.doughnutChartData = [ this.localDeaths , this.locatTotalCases , this.localRecovered , this.localActiveCases ]
-                      this.lineChartData = [{ data: [ 149, 174, 143, 164, 128, 131, 152, 108, 136, 155, 224, 219, 250, 311, 295, 324, 394, 353, 376, 287, 397, 393, 609, 431, 342, 465, 548, 710, 522, 702, 642, 650, 774, 1141, 876, 816, 1075, 1869, 1139, 1545, 1397, 1107, 1681, 1636, 1045, 1491, 1147, 1553] , label: 'COVID 19' }];
-                      this.chartLabels = projects2;
+                      // this.doughnutChartData = [ this.localDeaths , this.locatTotalCases , this.localRecovered , this.localActiveCases ]
+                     // this.lineChartData = [{ data: [ 149, 174, 143, 164, 128, 131, 152, 108, 136, 155, 224, 219, 250, 311, 295, 324, 394, 353, 376, 287, 397, 393, 609, 431, 342, 465, 548, 710, 522, 702, 642, 650, 774, 1141, 876, 816, 1075, 1869, 1139, 1545, 1397, 1107, 1681, 1636, 1045, 1491, 1147, 1553] , label: 'COVID 19' }];
+                     // this.chartLabels = projects2;
 
 
                    
                  
 
-                   }
+                 //  }
                  
-                    );
+                  //  );
                     
                   
 
