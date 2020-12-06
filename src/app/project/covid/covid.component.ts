@@ -87,9 +87,9 @@ export class CovidComponent implements OnInit {
     
     //this.options = this.countries;
     this.dataSource2.paginator = this.paginator.toArray()[0];;
-    this.dataSource3.paginator = this.paginator.toArray()[0];;
+    this.dataSource3.paginator = this.paginator.toArray()[1];;
     
-    //this.getCovidStatics();
+    this.getCovidStatics();
     this.getCountries();
     this.covidForm.get("countryName").valueChanges.subscribe(x => {
       console.log(x);
@@ -137,6 +137,7 @@ export class CovidComponent implements OnInit {
         this.pageSize =  10;
         this.cdr.detectChanges();
         this.dataSource3.data = data as STATICS[];
+                            
         
       })
   }
