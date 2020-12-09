@@ -24,7 +24,7 @@ main{
   .box1{
    grid-area: box1;
    justify-content: center;
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   box-shadow: 0 4px 8px 0 rgba(29, 15, 61, 0.2), 0 6px 20px 0 rgba(165, 141, 189, 0.19);
    border: 1px solid var(--border);
    border-radius: 1% !important;
    font-family: 'Castoro', serif;
@@ -83,6 +83,10 @@ main{
     padding-bottom: 10px;
     
 }
+mat-label{
+  font-size: 19px !important;
+}
+
   }
   
 
@@ -108,8 +112,12 @@ main{
       display: flex;
       flex-direction: column;
       justify-content: space-evenly  !important;
+      
    
 
+  }
+  mat-label{
+    font-size: 19px !important;
   }
   
   }
@@ -127,6 +135,7 @@ main{
       justify-content: space-between;
       margin-left: 10% !important;
       margin-right: 10% !important;
+      
   }
 
   .totalcases , .deathscases , .recoverdcases , .activecases , .pcr {
@@ -141,7 +150,10 @@ main{
       width: 200px;
       font-family: 'Padauk', sans-serif !important;
       font-weight: 500;
-      
+      margin-top: 3% !important;
+      margin-bottom: 3% !important;
+      padding-top: 3%;
+      padding-bottom: 3%;
      
 
       
@@ -154,6 +166,7 @@ main{
    h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
+    color:   #294470!important;
    }
  
    table {
@@ -196,8 +209,14 @@ main{
       color: #7CFC00;
     }
     .recoverdcases{
-      color:  #FF4500;
+      color:  #7CFC00;
     }
     .activecases{
       color: #FF6347;
+    }
+    mat-label{
+      font-size: 24px;
+    }
+    .text-color{
+      color:  #252f38;
     }
