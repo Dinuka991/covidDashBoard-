@@ -13,6 +13,8 @@ import { FormBuilder ,FormGroup , FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import {MatSort} from '@angular/material/sort';
 import {  ChangeDetectorRef } from '@angular/core';
+import { HostListener } from "@angular/core";
+
 
 
 @Component({
@@ -37,16 +39,19 @@ export class CovidComponent implements OnInit {
   localActiveCase: number;
   globalActiveCase: number;
   localRecoverd: number;
-  doughnutChartLabels: Label[] = [ 'Total Deaths',  'Confirmed Cases', 'Recovered' , 'Active'];
-  doughnutChartData: MultiDataSet = [
-    [55, 25, 20]
-  ];
+  doughnutChartLabels: Label[] = [  'Active Cases' , 'Recoverd Cases',  'Deathes'];
+  public doughnutChartColors: Color[] = [{
+    backgroundColor: ['#976405', '#3b7006', '#e72d0c']
+   }];
+  doughnutChartData: MultiDataSet = [[]];
   doughnutChartType: ChartType = 'doughnut';
 
 
 
   lineChartData: ChartDataSets[] = [{ data: [330, 600, 260, 700], label: 'Account A' }];
   lineChartLabels: Label[] = [];
+  
+
   chartLabels = [];
   lineChartOptions = {
     responsive: true,
@@ -73,6 +78,14 @@ export class CovidComponent implements OnInit {
   selectedCountry: string;
   startDate: Date;
   endDate: Date;
+  localNewCases: any;
+  arrayDoughnut = [];
+  scrHeight:any;
+  scrWidth:any;
+  chartHieght =  120;
+  
+    
+    
 
   constructor(private covidService: CovidService ,private cdr: ChangeDetectorRef, private fb: FormBuilder ,   public datepipe: DatePipe ) { 
     this.filteredStates = this.covidForm.get('countryName').valueChanges
@@ -80,12 +93,21 @@ export class CovidComponent implements OnInit {
       startWith(''),
       map(state => state ? this._filterStates(state) : this.countries.slice())
     );
-  }
-
-  ngOnInit() {
 
     
-    //this.options = this.countries;
+  }
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        console.log(this.scrHeight, this.scrWidth);
+  }
+
+
+  ngOnInit() {
+   
+    this.getScreenSize();
+    if(this.scrWidth< 1200){ this.chartHieght = 400 }
     this.dataSource2.paginator = this.paginator.toArray()[0];;
     this.dataSource3.paginator = this.paginator.toArray()[1];;
     
@@ -146,11 +168,18 @@ export class CovidComponent implements OnInit {
                 .subscribe( (data: any ) => {
 
 
-                  this.localActiveCases = data.data.local_active_this
+                  this.localActiveCases = data.data.local_active_cases;
                   console.log(this.localActiveCases)
                   this.locatTotalCases = data.data.local_total_cases;
                   this.localRecovered = data.data.local_recovered;
-                  this.localDeaths = data.data.lthisal_deaths;
+                  this.localDeaths = data.data.local_deaths;
+                  this.localNewCases = data.data.local_new_cases;
+                  this.arrayDoughnut.push(this.localActiveCases , this.localRecovered ,  this.localDeaths );
+                  console.log(this.arrayDoughnut);
+                   this.doughnutChartData = this.arrayDoughnut;
+
+
+
 
                   var count = Object.keys(data.data.daily_pcr_testing_data).length;
                   this.totalCount = count;

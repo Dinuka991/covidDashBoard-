@@ -8,10 +8,6 @@
               <mat-label ><h6>Total  Cases</h6></mat-label>
               <mat-label >{{locatTotalCases}}</mat-label>
             </div>
-            <div class="deathscases">
-             <mat-label ><h6> Total Deaths</h6></mat-label>
-             <mat-label>{{localDeaths}}</mat-label>
-            </div> 
             <div class="recoverdcases">
               <mat-label ><h6>Recovered & Discharged</h6></mat-label>
               <mat-label> {{localRecovered}}</mat-label>
@@ -19,6 +15,14 @@
             <div class="activecases">
               <mat-label><h6> Active Cases</h6></mat-label>
               <mat-label> {{localActiveCases}}</mat-label>
+           </div>
+            <div class="deathscases">
+             <mat-label ><h6> Total Deaths</h6></mat-label>
+             <mat-label>{{localDeaths}}</mat-label>
+            </div> 
+             <div class="newcases">
+              <mat-label><h6> New Cases</h6></mat-label>
+              <mat-label> {{localNewCases}}</mat-label>
            </div>
       </div>        
     </mat-card-content>
@@ -63,11 +67,15 @@
 
 <mat-card  class="box3">
 <mat-card-content>
+ 
   <div class="chart-wrapper">
+    <h3>Cases breakdown</h3>
     <canvas baseChart 
     [data]="doughnutChartData"
     [labels]="doughnutChartLabels"
-    [chartType]="doughnutChartType">
+    [colors]="doughnutChartColors"
+    [chartType]="doughnutChartType"
+    height= "{{chartHieght}}">
   </canvas>
 </div>
 
