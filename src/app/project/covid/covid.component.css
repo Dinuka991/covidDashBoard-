@@ -108,18 +108,14 @@ mat-label{
          padding: left;     
     
     }
-    .flex-container{
+    .flex-container , .flex-container2{
       display: flex;
       flex-direction: column;
       justify-content: space-evenly  !important;
-      
-   
-
-  }
+    }
   mat-label{
     font-size: 19px !important;
   }
-  
   }
   
   
