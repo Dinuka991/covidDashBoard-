@@ -41,7 +41,7 @@ export class CovidComponent implements OnInit {
   localRecoverd: number;
   doughnutChartLabels: Label[] = [  'Active Cases' , 'Recoverd Cases',  'Deathes'];
   public doughnutChartColors: Color[] = [{
-    backgroundColor: ['#976405', '#3b7006', '#e72d0c']
+    backgroundColor: ['#976405', '#34d151', '#e72d0c']
    }];
   doughnutChartData: MultiDataSet = [[]];
   doughnutChartType: ChartType = 'doughnut';
@@ -59,8 +59,8 @@ export class CovidComponent implements OnInit {
 
   lineChartColors: Color[] = [
     {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,255,0,0.28)',
+      borderColor: '#3a3a78',
+      backgroundColor: 	'#2d89ef' ,
     },
   ];
 
@@ -83,6 +83,10 @@ export class CovidComponent implements OnInit {
   scrHeight:any;
   scrWidth:any;
   chartHieght =  120;
+  global_total_cases: any;
+  global_deaths: any;
+  global_recovered: any;
+  gloabal_active: number;
   
     
     
@@ -100,14 +104,14 @@ export class CovidComponent implements OnInit {
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
         this.scrWidth = window.innerWidth;
-        console.log(this.scrHeight, this.scrWidth);
+       
   }
 
 
   ngOnInit() {
    
     this.getScreenSize();
-    if(this.scrWidth< 1200){ this.chartHieght = 400 }
+    if(this.scrWidth< 1200){ this.chartHieght = 400 ;   }
     this.dataSource2.paginator = this.paginator.toArray()[0];;
     this.dataSource3.paginator = this.paginator.toArray()[1];;
     
@@ -178,6 +182,14 @@ export class CovidComponent implements OnInit {
                   console.log(this.arrayDoughnut);
                    this.doughnutChartData = this.arrayDoughnut;
 
+                   // globale cases 
+
+                   this.global_total_cases = data.data.global_total_cases;
+                   this.global_deaths = data.data.global_deaths;
+                   this.global_recovered = data.data.global_recovered;
+                   this.gloabal_active =  this.global_total_cases - (   this.global_recovered  +  this.global_deaths  )
+                    
+
 
 
 
@@ -194,7 +206,7 @@ export class CovidComponent implements OnInit {
                  console.log(arr2);
                  let arr3 = arr.slice(Math.max(arr.length - 10, 0));
                  let arr4 = arr2.slice(Math.max(arr2.length - 10, 0));
-                 this.lineChartData = [{ data: arr3 ,   label: 'COVID 19' } ] ;
+                 this.lineChartData = [{ data: arr3 ,   label: 'PCR TESTS' } ] ;
                  this.lineChartLabels = arr4
                 // this.chartLabels = arr2.slice(Math.max(arr2.length - 5, 0));
                // console.log( arr2.slice(Math.max(arr2.length - 5, 0)))

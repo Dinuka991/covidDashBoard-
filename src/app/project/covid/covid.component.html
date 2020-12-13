@@ -1,28 +1,29 @@
-<h1 >COVID-19 LIVE DASHBOARD</h1>
+<h2 >COVID-19 LIVE DASHBOARD</h2>
 <main>
      
   <mat-card class="box1" >
     <mat-card-content>
+      <h3>   SL Figures</h3>
       <div class="flex-container">
            <div class="totalcases">
               <mat-label ><h6>Total  Cases</h6></mat-label>
-              <mat-label >{{locatTotalCases}}</mat-label>
+              <mat-label class="lg"><p>{{locatTotalCases}}<p></mat-label>
             </div>
             <div class="recoverdcases">
               <mat-label ><h6>Recovered & Discharged</h6></mat-label>
-              <mat-label> {{localRecovered}}</mat-label>
+              <mat-label  class="lg"> {{localRecovered}}</mat-label>
             </div>
             <div class="activecases">
               <mat-label><h6> Active Cases</h6></mat-label>
-              <mat-label> {{localActiveCases}}</mat-label>
+              <mat-label  class="lg"> {{localActiveCases}}</mat-label>
            </div>
             <div class="deathscases">
              <mat-label ><h6> Total Deaths</h6></mat-label>
-             <mat-label>{{localDeaths}}</mat-label>
+             <mat-label  class="lg">{{localDeaths}}</mat-label>
             </div> 
              <div class="newcases">
               <mat-label><h6> New Cases</h6></mat-label>
-              <mat-label> {{localNewCases}}</mat-label>
+              <mat-label class="lg" > {{localNewCases}}</mat-label>
            </div>
       </div>        
     </mat-card-content>
@@ -31,6 +32,21 @@
 
 <mat-card class="box2" >
 <mat-card-content>
+  <h3>  GLOBAL Figures</h3>
+  <div class="flex-container2">
+    <div class="totalcases" >
+       <mat-label ><h6>Global Total  Cases</h6></mat-label>
+       <mat-label ><p>{{global_total_cases}}</p></mat-label>
+     </div>
+     <div class="recoverdcases" >
+       <mat-label ><h6>Global Recovered</h6></mat-label>
+       <mat-label> {{global_recovered}}</mat-label>
+     </div>
+     <div class="deathscases" >
+      <mat-label ><h6> Global Total Deaths</h6></mat-label>
+      <mat-label>{{global_deaths}}</mat-label>
+     </div> 
+</div>        
 
        
 
@@ -41,9 +57,9 @@
 
 <mat-card  class="box3">
 <mat-card-content>
- 
-  <div class="chart-wrapper">
-    <h3>Cases breakdown</h3>
+  <h3 >SL Cases breakdown</h3>
+  <div class="chart-wrapper" style="justify-content: center;">
+   
     <canvas baseChart 
     [data]="doughnutChartData"
     [labels]="doughnutChartLabels"
@@ -57,10 +73,9 @@
 </mat-card>
 
 <mat-card class="box4" >
-<mat-card-header>
-<mat-card-title>PCR DATA</mat-card-title>
-</mat-card-header>
+
 <mat-card-content>
+  <h3>PCR FIGURES</h3>
   <div class="chart-wrapper">
     <canvas baseChart
         [datasets]="lineChartData"
@@ -79,10 +94,8 @@
 </mat-card>
 
 <mat-card  class="box5" >
-<mat-card-header>
-<mat-card-title>Global Search</mat-card-title>
-</mat-card-header>
 <mat-card-content>
+  <h3>Global Search</h3>
   <form [formGroup] = "covidForm" class="flex-container" >
     
     <mat-form-field>
@@ -114,16 +127,13 @@
 </mat-card-content>
 
 <div class="mat-elevation-z8 ">
-  <mat-form-field style= "align-content: end !important;" >
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-  </mat-form-field>
+ 
   
   <table mat-table [dataSource]="dataSource3">
 
     <!-- Position Column -->
     <ng-container matColumnDef="Date">
-      <th mat-header-cell *matHeaderCellDef> PCR DATE </th>
+      <th mat-header-cell *matHeaderCellDef> TEST DATE RANGE</th>
       <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
     </ng-container>
 
