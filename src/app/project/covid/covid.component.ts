@@ -28,9 +28,9 @@ export class CovidComponent implements OnInit {
 
  
   filteredStates: Observable<State[]>;
+  @ViewChild(MatPaginator) paginator1: MatPaginator;
+
  
-  @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
-  @ViewChildren(MatSort) sort = new QueryList<MatSort>();
 
   displayedColumns: string[] = ['date', 'count'];
   displayedColumns2: string[] = ['Date', 'Cases'];
@@ -112,8 +112,8 @@ export class CovidComponent implements OnInit {
    
     this.getScreenSize();
     if(this.scrWidth< 1200){ this.chartHieght = 400 ;   }
-    this.dataSource2.paginator = this.paginator.toArray()[0];;
-    this.dataSource3.paginator = this.paginator.toArray()[1];;
+
+    this.dataSource3.paginator = this.paginator1;
     
     this.getCovidStatics();
     this.getCountries();
@@ -137,10 +137,8 @@ export class CovidComponent implements OnInit {
 
  
   ngAfterViewInit(): void {
-    this.dataSource2.paginator = this.paginator.toArray()[0];;
-    this.dataSource3.paginator = this.paginator.toArray()[1];;
-    this.dataSource2.sort = this.sort.toArray()[0];
-    this.dataSource3.sort = this.sort.toArray()[1];
+    this.dataSource3.paginator = this.paginator1;
+
 
   }
   applyFilter(event: Event) {
