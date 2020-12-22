@@ -1,4 +1,4 @@
-<h2 >COVID-19 LIVE DASHBOARD</h2>
+<h2 >COVID-19 FIGURES in SRI LANKA</h2>
 <main>
      
   <mat-card class="box1" >
@@ -54,13 +54,17 @@ data-aos-duration="1000" >
        <mat-label ><h6>Global Recovered</h6></mat-label>
        <mat-label> {{global_recovered}}</mat-label>
      </div>
+     <div class="activecases" >
+      <mat-label ><h6> Global Active Cases </h6></mat-label>
+      <mat-label>{{gloabal_active}}</mat-label>
+     </div> 
      <div class="deathscases" >
       <mat-label ><h6> Global Total Deaths</h6></mat-label>
       <mat-label>{{global_deaths}}</mat-label>
      </div> 
+     
 </div>        
 
-       
 
 </mat-card-content>
 
@@ -162,7 +166,7 @@ data-aos-duration="3000"> >
       <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
     </table>
    
-    <mat-paginator 
+    <mat-paginator #paginator1
     
     [pageSize]="5" >
     </mat-paginator>

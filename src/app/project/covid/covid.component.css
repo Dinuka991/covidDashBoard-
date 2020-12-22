@@ -55,6 +55,7 @@ main{
     box-shadow: 0 4px 8px 0 rgba(44, 22, 95, 0.2), 0 6px 20px 0 rgba(199, 185, 233, 0.19);
     border: 1px solid var(--border);
     border-radius: 1% !important;
+  
   }
   .box5{
     grid-area: box5;
@@ -142,6 +143,7 @@ main{
     .example-full-width {
       width: 100%;
     }
+    
 
     .footer {
       position: fixed;
@@ -171,13 +173,13 @@ main{
          justify-items: stretch;      
       
       }
-
       .flex-container{
         display: flex;
         flex-direction: row;
         margin-left: 10% !important;
         margin-right: 10% !important;
         justify-content: space-evenly !important;
-    }
+      }
+
 
     }
