@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
 import {MatSort} from '@angular/material/sort';
 import {  ChangeDetectorRef } from '@angular/core';
 import { HostListener } from "@angular/core";
-
+import * as AOS from 'aos';
 
 
 @Component({
@@ -110,6 +110,7 @@ export class CovidComponent implements OnInit {
 
   ngOnInit() {
    
+    AOS.init();
     this.getScreenSize();
     if(this.scrWidth< 1200){ this.chartHieght = 400 ;   }
     this.dataSource2.paginator = this.paginator.toArray()[0];;

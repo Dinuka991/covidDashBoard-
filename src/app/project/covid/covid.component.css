@@ -10,18 +10,22 @@ body { margin: 0; ;background: #f2f4f8; font-family: Roboto, "Helvetica Neue", s
 main{
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 2fr 4fr 4fr;
-    grid-template-areas: 
-              "box1 box1 box1 box1" 
-              "box2 box3 box3 box3"
-              "box4 box4 box5 box5";
-              color: #f2f4f8;
-              color: #2d89ef;  
-     grid-gap: 2.4rem;
+    color: #f2f4f8;
+    color: #2d89ef;  
      margin: 15px 15px;   
      text-align: center;
-     justify-items: stretch;      
+     justify-items: stretch;
+     grid-template-columns: 1fr ;
+     grid-template-rows: 1.5fr 2fr 2fr 1.5fr 1.5fr;
+     grid-template-areas: 
+               "box1" 
+               "box2" 
+               "box3"
+               "box4" 
+               "box5";
+      grid-gap: 0.5rem;
+      margin: auto;    
+      padding: left;     
   
   }
   .box1{
@@ -66,6 +70,8 @@ main{
     margin-left: 10% !important;
     margin-right: 10% !important;
     justify-content: space-evenly !important;
+    flex-direction: column;
+    align-items: center ;
 }
  .flex-container2{
     display: flex;
@@ -137,46 +143,41 @@ main{
       width: 100%;
     }
 
-    @media screen and (max-width: 1240px) {
-   
-      .flex-container{
-        flex-direction: column;
-        align-items: center !important;
-    }
-    .totalcases , .deathscases , .recoverdcases , .activecases , .pcr , .newcases{
-        
-      width: auto ;
-      height: 100px !important;
-      padding-bottom: 10px;
-      
-  }
-  
-  
-    }
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color:  rgba(239, 241, 252, 0.5);
+      color:  var(--base);
+      text-align: center;
+    }       
     
-  
-    @media screen and (max-width: 640px) {
+    @media (min-width: 981px) {
       main{
-         
-          height: auto;
-          display: grid;
-          grid-template-columns: 1fr ;
-          grid-template-rows: 1.5fr 2fr 2fr 1.5fr 1.5fr;
-          grid-template-areas: 
-                    "box1" 
-                    "box2" 
-                    "box3"
-                    "box4" 
-                    "box5";
-           grid-gap: 0.5rem;
-           margin: auto;    
-           padding: left;     
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 2fr 4fr 4fr;
+        grid-template-areas: 
+                  "box1 box1 box1 box1" 
+                  "box2 box3 box3 box3"
+                  "box4 box4 box5 box5";
+                  color: #f2f4f8;
+                  color: #2d89ef;  
+         grid-gap: 2.4rem;
+         margin: 15px 15px;   
+         text-align: center;
+         justify-items: stretch;      
       
       }
-      .flex-container {
-        flex-direction: column;
-        align-items: center !important;
-      }
-      
+
+      .flex-container{
+        display: flex;
+        flex-direction: row;
+        margin-left: 10% !important;
+        margin-right: 10% !important;
+        justify-content: space-evenly !important;
     }
-    
+
+    }

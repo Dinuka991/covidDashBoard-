@@ -5,23 +5,33 @@
     <mat-card-content>
       <h3>   SL Figures</h3>
       <div class="flex-container">
-           <div class="totalcases">
+           <div class="totalcases" data-aos="fade-right"   data-aos-offset="200"
+           data-aos-delay="50"
+           data-aos-duration="1000">
               <mat-label ><h6>Total  Cases</h6></mat-label>
               <mat-label class="lg"><p>{{locatTotalCases}}<p></mat-label>
             </div>
-            <div class="recoverdcases">
+            <div class="recoverdcases"  data-aos="fade-right"  data-aos-offset="200"
+            data-aos-delay="100"
+            data-aos-duration="1000">
               <mat-label ><h6>Recovered & Discharged</h6></mat-label>
               <mat-label  class="lg"> {{localRecovered}}</mat-label>
             </div>
-            <div class="activecases">
+            <div class="activecases"  data-aos="fade-right" data-aos-offset="200"
+            data-aos-delay="150"
+            data-aos-duration="1000">
               <mat-label><h6> Active Cases</h6></mat-label>
               <mat-label  class="lg"> {{localActiveCases}}</mat-label>
            </div>
-            <div class="deathscases">
+            <div class="deathscases"  data-aos="fade-right" data-aos-offset="200"
+            data-aos-delay="200"
+            data-aos-duration="1000">
              <mat-label ><h6> Total Deaths</h6></mat-label>
              <mat-label  class="lg">{{localDeaths}}</mat-label>
             </div> 
-             <div class="newcases">
+             <div class="newcases"  data-aos="fade-right" data-aos-offset="200"
+             data-aos-delay="250"
+             data-aos-duration="1000">
               <mat-label><h6> New Cases</h6></mat-label>
               <mat-label class="lg" > {{localNewCases}}</mat-label>
            </div>
@@ -30,7 +40,9 @@
   </mat-card>
 
 
-<mat-card class="box2" >
+<mat-card class="box2"  data-aos="flip-up"  data-aos-offset="200"
+data-aos-delay="150"
+data-aos-duration="1000" >
 <mat-card-content>
   <h3>  GLOBAL Figures</h3>
   <div class="flex-container2">
@@ -55,7 +67,7 @@
 </mat-card>
 
 
-<mat-card  class="box3">
+<mat-card  class="box3"  data-aos="flip-up">
 <mat-card-content>
   <h3 >SL Cases breakdown</h3>
   <div class="chart-wrapper" style="justify-content: center;">
@@ -72,7 +84,8 @@
 </mat-card-content>
 </mat-card>
 
-<mat-card class="box4" >
+<mat-card class="box4"  data-aos="fade-up"
+data-aos-duration="3000">
 
 <mat-card-content>
   <h3>PCR FIGURES</h3>
@@ -93,7 +106,8 @@
 
 </mat-card>
 
-<mat-card  class="box5" >
+<mat-card  class="box5"  data-aos="fade-up"
+data-aos-duration="3000"> >
 <mat-card-content>
   <h3>Global Search</h3>
   <form [formGroup] = "covidForm" class="flex-container" >
@@ -155,7 +169,13 @@
 
 
 </div>
-
+ 
 </mat-card>
 
+
 </main>   
+<footer>
+  <div class="footer">
+     <p>&#169; Dinuka Darshana 	</p>
+   </div>
+</footer>   

@@ -21,6 +21,8 @@
     "@angular/platform-browser": "~10.1.3",
     "@angular/platform-browser-dynamic": "~10.1.3",
     "@angular/router": "~10.1.3",
+    "aos": "^2.3.4",
+    "bootstrap": "^5.0.0-beta1",
     "chart.js": "^2.9.4",
     "hammerjs": "^2.0.8",
     "ng2-charts": "^2.4.2",
