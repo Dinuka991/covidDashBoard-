@@ -26,7 +26,7 @@ export class CovidComponent implements OnInit {
 
 
 
- 
+  isChecked: boolean = true;
   filteredStates: Observable<State[]>;
   @ViewChild(MatPaginator) paginator1: MatPaginator;
 
@@ -41,7 +41,7 @@ export class CovidComponent implements OnInit {
   localRecoverd: number;
   doughnutChartLabels: Label[] = [  'Active Cases' , 'Recoverd Cases',  'Deathes'];
   public doughnutChartColors: Color[] = [{
-    backgroundColor: ['#976405', '#34d151', '#e72d0c']
+    backgroundColor: ['#f8c565', '#41ec60', '#f5826e']
    }];
   doughnutChartData: MultiDataSet = [[]];
   doughnutChartType: ChartType = 'doughnut';
@@ -110,9 +110,10 @@ export class CovidComponent implements OnInit {
 
   ngOnInit() {
    
+    this.isChecked = localStorage.getItem('theme') === 'Dark' ? true:  false;
     AOS.init();
     this.getScreenSize();
-    if(this.scrWidth< 1200){ this.chartHieght = 400 ;   }
+    if(this.scrWidth< 1200){ this.chartHieght = 200 ;   }
 
     this.dataSource3.paginator = this.paginator1;
     
@@ -124,6 +125,9 @@ export class CovidComponent implements OnInit {
       console.log(this.selectedCountry);
     })
     
+  }
+  setTheme(){
+    localStorage.setItem('theme', this.isChecked? "Dark" : "Light" )
   }
   covidForm = this.fb.group({
     countryName: [''],

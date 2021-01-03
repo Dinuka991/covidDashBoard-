@@ -3,7 +3,7 @@ html, body { height: 100%; }
 body { margin: 0; ;background: #f2f4f8; font-family: Roboto, "Helvetica Neue", sans-serif; }
  h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
-  color:   #294470!important;
+
   text-align: center;
  }
 
@@ -96,20 +96,20 @@ main{
     padding-bottom: 3%;
 }
 .recoverdcases{
-  color:  #34d151;
+  color:  #41ec60;
 }
 .activecases{
-  color: #976405;
+  color: #f8c565;
 }
 
 .text-color{
   color:  #252f38;
 }
 .deathscases{
-  color: #e72d0c;
+  color: #f5826e;
 }
 .newcases{
-  color: #252538;
+  color: #74bef0;
 }
 
 .lg{   
@@ -180,6 +180,15 @@ main{
         margin-right: 10% !important;
         justify-content: space-evenly !important;
       }
+
+      .totalcases , .deathscases , .recoverdcases , .activecases , .pcr , .newcases {
+      
+ 
+        width: 200px !important;
+        height: 111px !important;
+        margin-bottom: 10px;
+  
+    }
 
 
     }

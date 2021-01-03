@@ -1,9 +1,24 @@
-<h2 >COVID-19 FIGURES in SRI LANKA</h2>
+<section  [ngClass]="{ 'my-dark-theme': isChecked }">
+<mat-toolbar color="primary">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="drawer.toggle()"
+    *ngIf="isHandset$ | async">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span  style="flex: auto" ></span>
+  <span>COVID-19 FIGURES </span>
+   <span  style="flex: auto" ></span>
+    <mat-slide-toggle  [(ngModel)]="isChecked"  labelPosition="before" (change)="setTheme()" ><mat-icon>bedtime</mat-icon></mat-slide-toggle>
+
+</mat-toolbar>
 <main>
      
   <mat-card class="box1" >
     <mat-card-content>
-      <h3>   SL Figures</h3>
+      <h3 color="primary" >   SL Figures</h3>
       <div class="flex-container">
            <div class="totalcases" data-aos="fade-right"   data-aos-offset="200"
            data-aos-delay="50"
@@ -14,7 +29,7 @@
             <div class="recoverdcases"  data-aos="fade-right"  data-aos-offset="200"
             data-aos-delay="100"
             data-aos-duration="1000">
-              <mat-label ><h6>Recovered & Discharged</h6></mat-label>
+              <mat-label ><h6>Recovered Cases</h6></mat-label>
               <mat-label  class="lg"> {{localRecovered}}</mat-label>
             </div>
             <div class="activecases"  data-aos="fade-right" data-aos-offset="200"
@@ -111,7 +126,7 @@ data-aos-duration="3000">
 </mat-card>
 
 <mat-card  class="box5"  data-aos="fade-up"
-data-aos-duration="3000"> >
+data-aos-duration="3000"> 
 <mat-card-content>
   <h3>Global Search</h3>
   <form [formGroup] = "covidForm" class="flex-container" >
@@ -183,3 +198,4 @@ data-aos-duration="3000"> >
      <p>&#169; Dinuka Darshana 	</p>
    </div>
 </footer>   
+</section>

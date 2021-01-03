@@ -12,7 +12,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$covid-primary: mat-palette($mat-indigo);
+$covid-primary: mat-palette($mat-deep-purple , A700);
 $covid-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -26,3 +26,14 @@ $covid-theme: mat-light-theme($covid-primary, $covid-accent, $covid-warn);
 // that you are using.
 @include angular-material-theme($covid-theme);
 
+$my-alternate-primary-dark: mat-palette($mat-grey , A700);;
+$my-alternate-accent-dark: mat-palette($mat-amber, A200, A100, A400);
+$my-alternate-warn-dark:mat-palette($mat-deep-orange);
+
+$my-alternate-theme-dark: mat-dark-theme($my-alternate-primary-dark, $my-alternate-accent-dark, $my-alternate-warn-dark);
+
+
+.my-dark-theme {
+   
+  @include angular-material-theme($my-alternate-theme-dark);
+}
